@@ -1,0 +1,353 @@
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --border: #30363d;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #58a6ff;
+  --match-bg: #3fb9504d;
+  --match-border: #3fb950;
+  --error: #f85149;
+  
+  --font-ui: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  
+  --radius-lg: 8px;
+  --radius-md: 6px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --transition: 150ms ease;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-ui);
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo::before {
+  content: "⚡";
+  font-size: 28px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0 12px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.input-wrapper:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2);
+}
+
+.input-wrapper.error {
+  border-color: var(--error);
+  box-shadow: 0 0 0 2px rgba(248, 81, 73, 0.2);
+}
+
+.regex-delimiter {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+.regex-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--text-primary);
+  padding: 12px 8px;
+}
+
+.regex-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.flags-display {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--accent);
+  min-width: 40px;
+}
+
+.error-message {
+  font-size: 13px;
+  color: var(--error);
+  margin-top: 8px;
+  min-height: 20px;
+}
+
+.flags-section {
+  margin-bottom: 20px;
+}
+
+.flags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.flag-toggle {
+  cursor: pointer;
+  user-select: none;
+}
+
+.flag-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.flag-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  font-size: 14px;
+  transition: all var(--transition);
+}
+
+.flag-toggle:hover .flag-label {
+  border-color: var(--accent);
+}
+
+.flag-toggle input:checked + .flag-label {
+  background: rgba(88, 166, 255, 0.15);
+  border-color: var(--accent);
+}
+
+.flag-char {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.flag-name {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.test-section {
+  margin-bottom: 20px;
+}
+
+.test-container {
+  position: relative;
+  min-height: 200px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.highlight-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: transparent;
+  pointer-events: none;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: transparent;
+}
+
+.highlight-layer .match {
+  background: var(--match-bg);
+  border-radius: 2px;
+  color: transparent;
+  border-bottom: 2px solid var(--match-border);
+}
+
+.test-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  resize: vertical;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.test-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2);
+}
+
+.test-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.results-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.results-header .label {
+  margin-bottom: 0;
+}
+
+.match-count {
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: rgba(88, 166, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.matches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.no-matches {
+  color: var(--text-secondary);
+  font-size: 14px;
+  text-align: center;
+  padding: 20px;
+}
+
+.match-item {
+  background: rgba(63, 185, 80, 0.08);
+  border: 1px solid rgba(63, 185, 80, 0.2);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.match-item:hover {
+  background: rgba(63, 185, 80, 0.15);
+  border-color: var(--match-border);
+}
+
+.match-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.match-text {
+  font-family: var(--font-mono);
+  color: var(--match-border);
+  font-weight: 500;
+}
+
+.match-index {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.match-groups {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.match-groups span {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 6px;
+  background: rgba(88, 166, 255, 0.1);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+}
+
+@media (max-width: 640px) {
+  #app {
+    padding: 16px;
+  }
+  
+  .flags-container {
+    gap: 6px;
+  }
+  
+  .flag-label {
+    padding: 5px 8px;
+  }
+  
+  .flag-name {
+    display: none;
+  }
+}

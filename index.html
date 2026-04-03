@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RegexLab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <header class="header">
+        <h1 class="logo">RegexLab</h1>
+      </header>
+
+      <main class="container">
+        <section class="regex-section">
+          <label class="label" for="regex-input">Pattern</label>
+          <div class="input-wrapper">
+            <span class="regex-delimiter">/</span>
+            <input 
+              type="text" 
+              id="regex-input" 
+              class="regex-input" 
+              placeholder="Enter regex pattern..."
+              spellcheck="false"
+              autocomplete="off"
+            >
+            <span class="regex-delimiter">/</span>
+            <span class="flags-display" id="flags-display">g</span>
+          </div>
+          <p class="error-message" id="error-message"></p>
+        </section>
+
+        <section class="flags-section">
+          <label class="label">Flags</label>
+          <div class="flags-container">
+            <label class="flag-toggle" title="Global - find all matches">
+              <input type="checkbox" id="flag-g" checked>
+              <span class="flag-label">
+                <span class="flag-char">g</span>
+                <span class="flag-name">global</span>
+              </span>
+            </label>
+            <label class="flag-toggle" title="Case insensitive">
+              <input type="checkbox" id="flag-i">
+              <span class="flag-label">
+                <span class="flag-char">i</span>
+                <span class="flag-name">insensitive</span>
+              </span>
+            </label>
+            <label class="flag-toggle" title="Multiline - ^ and $ match line boundaries">
+              <input type="checkbox" id="flag-m">
+              <span class="flag-label">
+                <span class="flag-char">m</span>
+                <span class="flag-name">multiline</span>
+              </span>
+            </label>
+            <label class="flag-toggle" title="DotAll - . matches newlines">
+              <input type="checkbox" id="flag-s">
+              <span class="flag-label">
+                <span class="flag-char">s</span>
+                <span class="flag-name">dotAll</span>
+              </span>
+            </label>
+            <label class="flag-toggle" title="Unicode - enable unicode support">
+              <input type="checkbox" id="flag-u">
+              <span class="flag-label">
+                <span class="flag-char">u</span>
+                <span class="flag-name">unicode</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <section class="test-section">
+          <label class="label" for="test-input">Test String</label>
+          <div class="test-container">
+            <div class="highlight-layer" id="highlight-layer"></div>
+            <textarea 
+              id="test-input" 
+              class="test-input" 
+              placeholder="Enter text to test against..."
+              spellcheck="false"
+            ></textarea>
+          </div>
+        </section>
+
+        <section class="results-section">
+          <div class="results-header">
+            <label class="label">Results</label>
+            <span class="match-count" id="match-count">0 matches</span>
+          </div>
+          <div class="matches-list" id="matches-list">
+            <p class="no-matches" id="no-matches">No matches found</p>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
